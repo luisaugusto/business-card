@@ -1,0 +1,12 @@
+wallet/*.pkpass
+wallet/*.pkpasstemplate
+wallet/validation.json
+wallet/*-source.zip
+wallet/.previous-standalone/
+public/*.pkpass
+artifacts
+*.pem
+*.key
+*.p12
+*.pfx
+*.certSigningRequest

@@ -1,4 +1,5 @@
 // Confirmed by Luis on September 21, 2026. This file is intentionally public.
+export const portraitFilename = "portrait.jpg";
 export const profile = {
   name: "Luis Augusto",
   givenName: "Luis",
@@ -15,5 +16,5 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/luisbaugusto/",
   publication: "https://luisaugusto.substack.com",
   feed: "https://luisaugusto.substack.com/feed",
-  portrait: "/contact/portrait.jpg",
+  portrait: `/contact/${portraitFilename}`,
 } as const;

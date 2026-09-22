@@ -1,7 +1,8 @@
 import { Suspense } from "react";
 import Image from "next/image";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { DownloadIcon, GithubIcon, LinkedinIcon, EmailIcon } from "@/components/icons";
+import { GithubIcon, LinkedinIcon, EmailIcon } from "@/components/icons";
+import { ContactDownloads } from "@/components/contact-downloads";
 import { Writing } from "@/components/writing";
 import { profile } from "@/lib/profile";
 
@@ -18,8 +19,8 @@ export default function ContactPage() {
         </div>
         <div className="identity"><h1>{profile.name}</h1><p>{profile.title}</p></div>
       </header>
-      <div className="actions rise">
-        <a className="save-contact" href="/contact/Luis-Augusto.vcf" download="Luis-Augusto.vcf"><DownloadIcon /><span>Save my contact</span></a>
+      <div className="actions">
+        <ContactDownloads walletAvailable={process.env.NEXT_PUBLIC_WALLET_AVAILABLE === "1"} />
         <nav className="socials" aria-label="Contact and social profiles">
           <a href={profile.github} target="_blank" rel="noopener noreferrer"><GithubIcon /><span>GitHub</span></a>
           <a href={profile.linkedin} target="_blank" rel="noopener noreferrer"><LinkedinIcon /><span>LinkedIn</span></a>

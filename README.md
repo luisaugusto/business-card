@@ -4,7 +4,7 @@ Luis’s digital business card, designed for [luis.app/contact](https://luis.app
 
 ## Development
 
-Requires Node.js 22 or newer.
+Requires Node.js 22 or newer. Signing the Wallet pass also requires Python 3 and OpenSSL.
 
 ```sh
 npm ci
@@ -14,7 +14,7 @@ npm run dev
 Open http://localhost:3100/contact. The application uses `/contact` as its Next.js base path, including all assets and API routes.
 
 ```sh
-npm run test       # feed parsing, failures, and vCard format
+npm run test       # feed, vCard, Wallet content/assets and signing failure checks
 npm run typecheck
 npm run build
 npm start
@@ -22,9 +22,15 @@ npm start
 
 ## Content
 
-`lib/profile.ts` is the single source of truth for Luis’s confirmed public contact details and publication links. The phone number is included in the downloadable vCard. Replace `public/portrait.jpg` to update the photo; it also appears in the vCard and social previews. Fonts are self-hosted and retain their upstream licenses in their npm packages.
+`lib/profile.ts` is the single source of truth for Luis’s confirmed public contact details and publication links, including the Wallet pass. The phone number is included in the downloadable vCard. Replace `public/portrait.jpg` to update the photo on the page, in the vCard, social previews, and both Wallet portraits. `lib/brand.ts` shares the dark palette between the page and pass. Fonts are self-hosted and retain their upstream licenses in their npm packages.
 
 The page preserves the supplied design, follows the system color scheme on first visit, and remembers a manual theme selection. Contact links and the vCard work without JavaScript.
+
+## Apple Wallet
+
+The pass source lives in [`wallet/`](wallet/README.md). `npm run dev` and `npm run build` regenerate it from the shared content and portrait. Production builds sign and validate the pass before publishing `/contact/Luis-Augusto.pkpass`. The official Add to Apple Wallet badge appears next to Save my contact on iPhone and iPod browsers after JavaScript loads; desktop, Android, and iPad browsers keep the contact button alone.
+
+Change the shared sources and deploy once to update both the page and the downloadable pass. Cards already saved in Wallet must be re-added to receive changes; this project does not run an automatic pass update service.
 
 ## Writing
 
@@ -34,10 +40,12 @@ A failed refresh throws inside Next.js’s data cache so an existing successful 
 
 ## Deployment
 
-Vercel runs tests before its production build. The connected GitHub repository deploys `main` to production and other branches to previews. No application secrets or paid integrations are required.
+Vercel runs tests before its production build. The connected GitHub repository deploys `main` to production and other branches to previews. Production-only sensitive environment variables hold the existing Wallet signing key and certificate (see [`wallet/README.md`](wallet/README.md)). Missing or invalid credentials fail the production build and leave the previous release active. Previews without credentials build normally with Wallet downloads disabled.
 
 The domain remains on the existing `luisaugusto-next` Vercel project. Its project routing rules forward `/contact` and `/contact/*` to this project’s stable production domain. The homepage continues to lead to Substack. See `docs/routing.md` for the deployed routing configuration and rollback instructions.
 
 ## Source assets
 
 The portrait and visual design were supplied by Luis in `business_card.zip`. The export runtime and sample articles are intentionally not shipped. Contact details were confirmed for public publication on September 21, 2026.
+
+The unmodified Add to Apple Wallet SVG is Apple-provided artwork, used under the Wallet Marketing Artwork License Agreement accepted by Luis’s authorization. Apple and Apple Wallet are trademarks of Apple Inc. See [`docs/credits.md`](docs/credits.md).

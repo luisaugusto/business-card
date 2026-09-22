@@ -4,3 +4,15 @@ node_modules/
 .env*
 *.tsbuildinfo
 .DS_Store
+*.pem
+*.key
+*.p12
+*.pfx
+*.certSigningRequest
+public/*.pkpass
+wallet/*.pkpass
+wallet/*.pkpasstemplate/
+wallet/validation.json
+wallet/*-source.zip
+wallet/.previous-standalone/
+artifacts/

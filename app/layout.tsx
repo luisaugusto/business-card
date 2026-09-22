@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
+import type { CSSProperties } from "react";
 import localFont from "next/font/local";
 import { profile } from "@/lib/profile";
+import { brandVariables } from "@/lib/brand";
 import "./globals.css";
 
 const sans = localFont({ src: "../node_modules/@fontsource-variable/public-sans/files/public-sans-latin-wght-normal.woff2", variable: "--font-sans", display: "swap" });
@@ -24,5 +26,5 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1, colo
 // Apply a valid stored preference before paint; CSS handles system theme without JS.
 const themeScript = `(function(){try{var t=localStorage.getItem('luis-card-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}})();`;
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" className={`${sans.variable} ${mono.variable}`} suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: themeScript }} /></head><body>{children}</body></html>;
+  return <html lang="en" className={`${sans.variable} ${mono.variable}`} style={brandVariables as CSSProperties} suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: themeScript }} /></head><body>{children}</body></html>;
 }

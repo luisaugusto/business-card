@@ -1,0 +1,2 @@
+# Preserve Apple's official badge byte-for-byte, including upstream whitespace.
+public/add-to-apple-wallet.svg -whitespace
