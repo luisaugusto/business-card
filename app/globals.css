@@ -1,0 +1,74 @@
+:root {
+  --bg: oklch(0.18 0.008 80); --surface: oklch(0.225 0.008 80);
+  --ink: oklch(0.96 0.006 80); --muted: oklch(0.70 0.010 80);
+  --line: oklch(0.31 0.008 80); --accent: oklch(0.78 0.13 70);
+  --btn-ink: oklch(0.19 0.02 70); color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --bg: oklch(0.975 0.006 85); --surface: oklch(1 0 0);
+  --ink: oklch(0.21 0.010 80); --muted: oklch(0.49 0.012 80);
+  --line: oklch(0.90 0.008 85); --accent: oklch(0.53 0.13 70);
+  --btn-ink: oklch(0.99 0 0); color-scheme: light;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: oklch(0.975 0.006 85); --surface: oklch(1 0 0);
+    --ink: oklch(0.21 0.010 80); --muted: oklch(0.49 0.012 80);
+    --line: oklch(0.90 0.008 85); --accent: oklch(0.53 0.13 70);
+    --btn-ink: oklch(0.99 0 0); color-scheme: light;
+  }
+  :root:not([data-theme="dark"]) .label-for-dark { display: none; }
+  :root:not([data-theme="dark"]) .label-for-light { display: inline; }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { min-height: 100svh; background: var(--bg); color: var(--ink); font-family: var(--font-sans), Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; padding: 28px 20px 48px; transition: background-color 400ms ease, color 400ms ease; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+a, button { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+.card { width: 100%; max-width: 520px; margin-inline: auto; display: flex; flex-direction: column; gap: 30px; }
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.theme-toggle { appearance: none; cursor: pointer; min-height: 36px; border: 1px solid var(--line); background: transparent; color: var(--muted); font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 7px 12px; border-radius: 999px; transition: color 200ms ease, border-color 200ms ease, transform 200ms ease; }
+.label-for-light { display: none; }
+:root[data-theme="light"] .label-for-dark { display: none; }
+:root[data-theme="light"] .label-for-light { display: inline; }
+.profile { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; animation-delay: 60ms; }
+.portrait-wrap { position: relative; width: 104px; height: 104px; }
+.glow { position: absolute; inset: -14px; border-radius: 50%; background: radial-gradient(circle at 50% 40%, var(--accent), transparent 68%); filter: blur(14px); opacity: 0.5; animation: breathe 6s ease-in-out infinite; }
+.portrait { position: relative; width: 104px; height: 104px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); display: block; }
+.identity { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+h1 { margin: 0; font-size: 38px; line-height: 1.05; font-weight: 600; letter-spacing: -0.028em; }
+.identity p { margin: 0; font-family: var(--font-mono), monospace; font-size: 12px; line-height: 1.6; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+.actions { display: flex; flex-direction: column; gap: 10px; animation-delay: 140ms; }
+.save-contact { width: 100%; display: flex; align-items: center; gap: 10px; background: var(--accent); color: var(--btn-ink); font-size: 15px; font-weight: 600; letter-spacing: -0.01em; padding: 16px 20px; border-radius: 14px; transition: transform 200ms ease, filter 200ms ease; }
+.save-contact:focus-visible { outline-offset: 4px; }
+.socials { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.socials a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 62px; padding: 9px; border: 1px solid var(--line); border-radius: 14px; font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); transition: transform 200ms ease, border-color 200ms ease, color 200ms ease; }
+.writing { display: flex; flex-direction: column; gap: 12px; animation-delay: 240ms; }
+.section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; font-family: var(--font-mono), monospace; font-size: 11px; text-transform: uppercase; }
+.section-heading h2 { margin: 0; font-size: inherit; font-weight: 500; letter-spacing: 0.16em; color: var(--muted); }
+.section-heading a { color: var(--accent); letter-spacing: 0.12em; padding-block: 8px; }
+.posts { display: flex; flex-direction: column; gap: 10px; }
+.post { display: flex; flex-direction: column; gap: 8px; padding: 18px 20px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); transition: transform 240ms ease, border-color 240ms ease; }
+.post-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.post h3 { margin: 0; font-size: 17px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.3; overflow-wrap: anywhere; }
+.post time { flex: none; font-family: var(--font-mono), monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.post p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--muted); }
+.rise { animation-name: rise; animation-duration: 700ms; animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); animation-fill-mode: both; }
+@media (hover: hover) {
+  .theme-toggle:hover, .socials a:hover { color: var(--ink); border-color: var(--accent); transform: translateY(-2px); }
+  .save-contact:hover { transform: translateY(-2px); filter: brightness(1.06); }
+  .post:hover { transform: translateY(-3px); border-color: var(--accent); }
+  .section-heading a:hover { text-decoration: underline; text-underline-offset: 4px; }
+}
+.save-contact:active { transform: translateY(0); }
+@media (max-width: 400px) {
+  .identity p { font-size: 11px; letter-spacing: 0.11em; }
+  .post-heading { flex-direction: column; gap: 8px; }
+}
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes breathe { 0%, 100% { opacity: 0.55; } 50% { opacity: 0.9; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
