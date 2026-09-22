@@ -1,0 +1,49 @@
+{
+  "capturedAt": "2026-09-22T04:00:10Z",
+  "projectId": "prj_rfNGbnUPIJGWfrzpqESLEi0ZtXLD",
+  "domains": [
+    {
+      "name": "luis.app",
+      "apexName": "luis.app",
+      "projectId": "prj_rfNGbnUPIJGWfrzpqESLEi0ZtXLD",
+      "redirect": "www.luis.app",
+      "redirectStatusCode": 308,
+      "gitBranch": null,
+      "customEnvironmentId": null,
+      "updatedAt": 1781118761772,
+      "createdAt": 1781118230760,
+      "verified": true
+    },
+    {
+      "name": "www.luis.app",
+      "apexName": "luis.app",
+      "projectId": "prj_rfNGbnUPIJGWfrzpqESLEi0ZtXLD",
+      "redirect": null,
+      "redirectStatusCode": null,
+      "gitBranch": null,
+      "customEnvironmentId": null,
+      "updatedAt": 1781118761553,
+      "createdAt": 1781118230335,
+      "verified": true
+    },
+    {
+      "name": "luisaugusto-next.vercel.app",
+      "apexName": "vercel.app",
+      "projectId": "prj_rfNGbnUPIJGWfrzpqESLEi0ZtXLD",
+      "redirect": null,
+      "gitBranch": null,
+      "customEnvironmentId": null,
+      "updatedAt": 1679942892371,
+      "createdAt": 1679942892371,
+      "verified": true
+    }
+  ],
+  "routes": {
+    "routes": [],
+    "version": null,
+    "limit": {
+      "maxRoutes": 100,
+      "currentRoutes": 0
+    }
+  }
+}
