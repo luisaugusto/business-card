@@ -43,10 +43,11 @@ h1 { margin: 0; font-size: 38px; line-height: 1.05; font-weight: 600; letter-spa
 .actions { display: flex; flex-direction: column; gap: 10px; animation-delay: 140ms; }
 .save-contact { width: 100%; display: flex; align-items: center; gap: 10px; background: var(--accent); color: var(--btn-ink); font-size: 15px; font-weight: 600; letter-spacing: -0.01em; padding: 16px 20px; border-radius: 14px; transition: transform 200ms ease, filter 200ms ease; }
 .save-contact:focus-visible { outline-offset: 4px; }
-.contact-downloads { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.contact-downloads { --download-height: 46px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 .contact-downloads .save-contact { flex: 1 1 160px; width: auto; min-height: 56px; padding-inline: 12px; white-space: nowrap; }
+.contact-downloads:has(.add-wallet) .save-contact { height: var(--download-height); min-height: var(--download-height); padding-block: 0; }
 .add-wallet { display: flex; flex: 0 0 auto; align-items: center; justify-content: center; padding: 5px; border-radius: 8px; }
-.add-wallet img { display: block; width: 146px; height: auto; }
+.add-wallet img { display: block; width: auto; height: var(--download-height); }
 .socials { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 .socials a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 62px; padding: 9px; border: 1px solid var(--line); border-radius: 14px; font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); transition: transform 200ms ease, border-color 200ms ease, color 200ms ease; }
 .writing { display: flex; flex-direction: column; gap: 12px; animation-delay: 240ms; }
