@@ -1,11 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import type { CSSProperties } from "react";
 import localFont from "next/font/local";
 import { profile } from "@/lib/profile";
-import { brandVariables } from "@/lib/brand";
 import "./globals.css";
 
 const sans = localFont({ src: "../node_modules/@fontsource-variable/public-sans/files/public-sans-latin-wght-normal.woff2", variable: "--font-sans", display: "swap" });
+const serif = localFont({ src: "../node_modules/@fontsource/dm-serif-display/files/dm-serif-display-latin-400-normal.woff2", variable: "--font-serif", display: "swap" });
 const mono = localFont({ src: [
   { path: "../node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2", weight: "400" },
   { path: "../node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff2", weight: "500" },
@@ -21,10 +20,7 @@ export const metadata: Metadata = {
   openGraph: { type: "profile", title: profile.name, description, url: profile.canonical, firstName: profile.givenName, lastName: profile.familyName, images: [{ url: profile.portrait, alt: profile.name }] },
   twitter: { card: "summary", title: profile.name, description, images: [profile.portrait] },
 };
-export const viewport: Viewport = { width: "device-width", initialScale: 1, colorScheme: "dark light" };
-
-// Apply a valid stored preference before paint; CSS handles system theme without JS.
-const themeScript = `(function(){try{var t=localStorage.getItem('luis-card-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}})();`;
+export const viewport: Viewport = { width: "device-width", initialScale: 1, colorScheme: "light", themeColor: "#efc7bc" };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" className={`${sans.variable} ${mono.variable}`} style={brandVariables as CSSProperties} suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: themeScript }} /></head><body>{children}</body></html>;
+  return <html lang="en" className={`${sans.variable} ${mono.variable} ${serif.variable}`}><body>{children}</body></html>;
 }

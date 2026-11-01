@@ -5,6 +5,7 @@ import { join } from "node:path";
 const config: NextConfig = {
   basePath: "/contact",
   poweredByHeader: false,
+  devIndicators: false,
   // Compile availability into the release; ISR must not inspect CDN-only files.
   env: { NEXT_PUBLIC_WALLET_AVAILABLE: existsSync(join(process.cwd(), "public", "Luis-Augusto.pkpass")) ? "1" : "0" },
   async headers() {
