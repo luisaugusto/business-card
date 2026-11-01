@@ -1,6 +1,6 @@
 # Luis Augusto — contact card
 
-Luis’s digital business card, designed for [luis.app/contact](https://luis.app/contact). Built with Next.js and TypeScript, with a mobile-first rose paper sleeve and an interactive cotton-paper card.
+Luis’s digital business card, designed for [luis.app/contact](https://luis.app/contact). Built with Next.js and TypeScript, with a mobile-first rose paper sleeve and a static cotton-paper card.
 
 ## Development
 
@@ -24,7 +24,7 @@ npm start
 
 `lib/profile.ts` is the single source of truth for Luis’s confirmed public contact details and publication links, including the Wallet pass. The phone number is included in the downloadable vCard. Replace `public/portrait.jpg` to update the photo on the page, in the vCard, social previews, and both Wallet portraits. The page palette lives in `app/globals.css`; `lib/brand.ts` retains the existing dark Wallet palette. Fonts are self-hosted and retain their upstream licenses in their npm packages.
 
-The page uses the approved light rose palette, an embossed LA monogram in the page header, and a two-line name beside the portrait. Tap **Lift card**, or focus it and press Enter/Space, to reveal the profile links. **Put back** or Escape returns the card to its sleeve. The action rows stay in place throughout the animation. Reduced-motion preferences switch between states without animation. Contact links and the vCard work without JavaScript.
+The page uses the approved light rose palette, an embossed LA monogram in the page header, and a two-line name beside the portrait. The card stays in its sleeve, showing the name, portrait, and role without an animation or reveal control. Accessible icon links below the email lead to GitHub, LinkedIn, and Writing on Substack. Contact links and the vCard work without JavaScript.
 
 ## Apple Wallet
 

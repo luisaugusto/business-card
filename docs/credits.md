@@ -14,7 +14,7 @@ These raster assets were generated with OpenAI Image Gen for this design and opt
 
 - `public/textures/blush-paper.webp`: evenly lit, pale blush stationery texture; repeated beneath a light rose surface.
 - `public/textures/ivory-paper.webp`: warm ivory cotton paper with fine embossed fibers.
-- `public/textures/sleeve-front.webp`: transparent dusty rose paper sleeve, folded side seams, central thumb notch, and printed “hello.” / “A card from Luis”. The prompt used the approved closed mockup as a reference and omitted the lift control, which is rendered as an accessible HTML button.
+- `public/textures/sleeve-front.webp`: transparent dusty rose paper sleeve, folded side seams, central thumb notch, and printed “hello.” / “A card from Luis”. The prompt used the approved closed mockup as a reference; the sleeve is now a static decorative element.
 - `public/textures/la-embossed.png`: transparent blush embossed serif monogram, with the L's foot crossing the A's middle; displayed only in the page header.
 
 Image Gen produced the raster artwork. Local processing only trimmed transparent padding, resized, and compressed assets. Generation sources and prompt records remain in the ignored local `artifacts/assets/` directory.

@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import Image from "next/image";
-import { EmailIcon, ExternalIcon } from "@/components/icons";
+import { EmailIcon, ExternalIcon, GithubIcon, LinkedinIcon, SubstackIcon } from "@/components/icons";
 import { ContactDownloads } from "@/components/contact-downloads";
 import { PocketCard } from "@/components/pocket-card";
 import { Writing } from "@/components/writing";
@@ -24,9 +24,9 @@ export default function ContactPage() {
           <EmailIcon /><span>{profile.email}</span><ExternalIcon />
         </a>
         <nav className="social-links" aria-label="Find Luis online">
-          <a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub<ExternalIcon /></a>
-          <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn<ExternalIcon /></a>
-          <a href={profile.publication} target="_blank" rel="noopener noreferrer">Writing<ExternalIcon /></a>
+          <a href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><GithubIcon /></a>
+          <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><LinkedinIcon /></a>
+          <a href={profile.publication} target="_blank" rel="noopener noreferrer" aria-label="Writing on Substack" title="Writing on Substack"><SubstackIcon /></a>
         </nav>
       </section>
 
