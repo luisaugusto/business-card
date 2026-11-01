@@ -1,6 +1,6 @@
 # Luis Augusto — contact card
 
-Luis’s digital business card, designed for [luis.app/contact](https://luis.app/contact). Built with Next.js, TypeScript, and the supplied Business Card design and portrait.
+Luis’s digital business card, designed for [luis.app/contact](https://luis.app/contact). Built with Next.js and TypeScript, with a mobile-first rose paper sleeve and an interactive cotton-paper card.
 
 ## Development
 
@@ -22,13 +22,13 @@ npm start
 
 ## Content
 
-`lib/profile.ts` is the single source of truth for Luis’s confirmed public contact details and publication links, including the Wallet pass. The phone number is included in the downloadable vCard. Replace `public/portrait.jpg` to update the photo on the page, in the vCard, social previews, and both Wallet portraits. `lib/brand.ts` shares the dark palette between the page and pass. Fonts are self-hosted and retain their upstream licenses in their npm packages.
+`lib/profile.ts` is the single source of truth for Luis’s confirmed public contact details and publication links, including the Wallet pass. The phone number is included in the downloadable vCard. Replace `public/portrait.jpg` to update the photo on the page, in the vCard, social previews, and both Wallet portraits. The page palette lives in `app/globals.css`; `lib/brand.ts` retains the existing dark Wallet palette. Fonts are self-hosted and retain their upstream licenses in their npm packages.
 
-The page preserves the supplied design, follows the system color scheme on first visit, and remembers a manual theme selection. Contact links and the vCard work without JavaScript.
+The page uses the approved light rose palette, an embossed LA monogram in the page header, and a two-line name beside the portrait. Tap **Lift card**, or focus it and press Enter/Space, to reveal the profile links. **Put back** or Escape returns the card to its sleeve. The action rows stay in place throughout the animation. Reduced-motion preferences switch between states without animation. Contact links and the vCard work without JavaScript.
 
 ## Apple Wallet
 
-The pass source lives in [`wallet/`](wallet/README.md). `npm run dev` and `npm run build` regenerate it from the shared content and portrait. Production builds sign and validate the pass before publishing `/contact/Luis-Augusto.pkpass`. The official Add to Apple Wallet badge appears next to Save my contact on iPhone and iPod browsers after JavaScript loads; desktop, Android, and iPad browsers keep the contact button alone.
+The pass source lives in [`wallet/`](wallet/README.md). `npm run dev` and `npm run build` regenerate it from the shared content and portrait. Production builds sign and validate the pass before publishing `/contact/Luis-Augusto.pkpass`. The official Add to Apple Wallet badge appears next to Save contact on iPhone and iPod browsers after JavaScript loads; desktop, Android, and iPad browsers keep the contact button alone.
 
 Change the shared sources and deploy once to update both the page and the downloadable pass. Cards already saved in Wallet must be re-added to receive changes; this project does not run an automatic pass update service.
 
@@ -46,6 +46,6 @@ The domain remains on the existing `luisaugusto-next` Vercel project. Its projec
 
 ## Source assets
 
-The portrait and visual design were supplied by Luis in `business_card.zip`. The export runtime and sample articles are intentionally not shipped. Contact details were confirmed for public publication on September 21, 2026.
+The portrait was supplied by Luis in `business_card.zip`. The new design follows the approved Rose Pocket mockups in `design-explorations/mobile/header-monogram-rose-pocket/`. Optimized textures, the embossed monogram, and the sleeve artwork live in `public/textures/`. The identity, profile links, and controls remain live HTML. Contact details were confirmed for public publication on September 21, 2026.
 
 The unmodified Add to Apple Wallet SVG is Apple-provided artwork, used under the Wallet Marketing Artwork License Agreement accepted by Luis’s authorization. Apple and Apple Wallet are trademarks of Apple Inc. See [`docs/credits.md`](docs/credits.md).

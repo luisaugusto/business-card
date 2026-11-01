@@ -1,5 +1,6 @@
 import { profile } from "@/lib/profile";
 import { getWriting } from "@/lib/writing";
+import { ExternalIcon } from "@/components/icons";
 
 const dateFormat = new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "America/Los_Angeles" });
 
@@ -7,10 +8,10 @@ export async function Writing() {
   const writing = await getWriting().catch(() => null);
   if (!writing?.posts.length) return null;
   return (
-    <section className="writing rise" aria-labelledby="writing-heading">
+    <section className="writing" aria-labelledby="writing-heading">
       <div className="section-heading">
         <h2 id="writing-heading">Latest writing</h2>
-        <a href={profile.publication} target="_blank" rel="noopener noreferrer">All posts <span aria-hidden="true">→</span></a>
+        <a href={profile.publication} target="_blank" rel="noopener noreferrer">All posts <ExternalIcon /></a>
       </div>
       <div className="posts">
         {writing.posts.map(post => (
