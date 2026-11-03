@@ -12,7 +12,7 @@ import { writeTemplate } from "../wallet/assets";
 import { createPass, walletIdentity } from "../wallet/model";
 
 test("pass details and branding derive from the same website profile", () => {
-  const contact = { ...profile, name: "Renée & Luis", title: "Updated role", email: "new@luis.app", canonical: "https://luis.app/contact?source=wallet", city: "New city" };
+  const contact = { ...profile, name: "Renée & Luis", title: "Updated role", email: "new@luis.app", canonical: "https://contact.luis.app?source=wallet", city: "New city" };
   const pass = createPass(contact);
   assert.equal(pass.logoText, contact.name);
   assert.equal(pass.organizationName, contact.name);
@@ -28,7 +28,15 @@ test("pass details and branding derive from the same website profile", () => {
   assert.equal(pass.labelColor, "rgb(236,168,81)");
   assert.equal(brandVariables["--brand-bg"], "oklch(0.18 0.008 80)");
   assert.equal(pass.serialNumber, walletIdentity.serialNumber);
-  assert.throws(() => createPass({ ...profile, canonical: "http://luis.app/contact" }), /HTTPS/);
+  assert.throws(() => createPass({ ...profile, canonical: "http://contact.luis.app" }), /HTTPS/);
+});
+
+test("published Wallet QR and website use the contact subdomain", () => {
+  const pass = createPass();
+  assert.equal(profile.canonical, "https://contact.luis.app");
+  assert.equal(pass.barcodes[0].message, "https://contact.luis.app");
+  assert.equal(pass.barcodes[0].altText, "contact.luis.app/");
+  assert.equal(pass.generic.backFields.find(field => field.key === "website")?.value, "https://contact.luis.app");
 });
 
 test("Wallet visibility supports iPhone browsers and iPod, excluding other devices", () => {

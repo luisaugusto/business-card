@@ -34,8 +34,8 @@ The current certificate expires **October 22, 2027 at 04:15:43 UTC**. Renew the 
 
 ## Download and device behavior
 
-The public URL is **https://luis.app/contact/Luis-Augusto.pkpass**. The response uses `application/vnd.apple.pkpass`, inline disposition and revalidation so a later release supplies the latest file. The page shows Apple's badge on iPhone/iPod browsers after hydration when the release contains a signed pass. It does not require Apple Pay availability. Other devices retain the ordinary contact download.
+The public URL is **https://contact.luis.app/contact/Luis-Augusto.pkpass**. The response uses `application/vnd.apple.pkpass`, inline disposition and revalidation so a later release supplies the latest file. The page shows Apple's badge on iPhone/iPod browsers after hydration when the release contains a signed pass. It does not require Apple Pay availability. Other devices retain the ordinary contact download.
 
-Apple controls pass layout: Pass Designer, macOS previews and iPhone Wallet can differ, and the auxiliary email may be omitted from the front when space is limited. The website and email are also in Pass Details; the email uses an explicit mailto link. The QR points to `profile.canonical`. The pass header keeps Luis's photo and full name.
+Apple controls pass layout: Pass Designer, macOS previews and iPhone Wallet can differ, and the auxiliary email may be omitted from the front when space is limited. The website and email are also in Pass Details; the email uses an explicit mailto link. The QR and Pass Details website point to `profile.canonical`, currently `https://contact.luis.app`. The pass header keeps Luis's photo and full name.
 
 Deploying updates the downloadable file, not passes already installed on devices. Re-add the pass to obtain the latest details. No registration server, APNs service, or pass-update authentication is configured. Browser emulation and signature validation do not substitute for checking Add to Wallet and links on a physical iPhone.

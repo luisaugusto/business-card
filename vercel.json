@@ -1,5 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
-  "buildCommand": "npm run test && npm run build"
+  "buildCommand": "npm run check",
+  "rewrites": [
+    { "source": "/", "destination": "/contact" }
+  ]
 }

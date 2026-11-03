@@ -50,7 +50,7 @@ export function parseFeed(xml: string, now = Date.now()): Post[] {
 
 export async function fetchWriting(fetcher: typeof fetch = fetch): Promise<Writing> {
   const response = await fetcher(profile.feed, {
-    headers: { Accept: "application/rss+xml, application/xml, text/xml", "User-Agent": "LuisContact/1.0 (+https://luis.app/contact)" },
+    headers: { Accept: "application/rss+xml, application/xml, text/xml", "User-Agent": `LuisContact/1.0 (+${profile.canonical})` },
     signal: AbortSignal.timeout(8_000),
     cache: "no-store",
   });

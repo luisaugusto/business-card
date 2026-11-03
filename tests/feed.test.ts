@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { fetchWriting, parseFeed } from "../lib/feed";
+import { profile } from "../lib/profile";
 const rss = (items = "") => `<?xml version="1.0"?><rss version="2.0"><channel><title>Luis Augusto</title>${items}</channel></rss>`;
 const item = (slug: string, date: string, title = "An actual article", description = "A short description") => `<item><title><![CDATA[${title}]]></title><link>https://luisaugusto.substack.com/p/${slug}</link><pubDate>${date}</pubDate><description><![CDATA[${description}]]></description></item>`;
 
@@ -32,4 +33,11 @@ test("successful empty feed is distinguishable from a failed feed", async () => 
   const data = await fetchWriting(empty);
   assert.deepEqual(data.posts, []);
   assert.ok(Number.isFinite(Date.parse(data.checkedAt)));
+});
+test("feed requests identify the current contact website", async () => {
+  const fetcher = (async (_input: RequestInfo | URL, init?: RequestInit) => {
+    assert.equal(new Headers(init?.headers).get("User-Agent"), `LuisContact/1.0 (+${profile.canonical})`);
+    return new Response(rss());
+  }) as typeof fetch;
+  await fetchWriting(fetcher);
 });

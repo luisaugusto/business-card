@@ -1,8 +1,35 @@
 # Production routing
 
-Configured September 21, 2026 (Pacific time).
+## Contact subdomain (November 2, 2026, Pacific time)
 
-- Public page: https://luis.app/contact
+- Canonical public page: https://contact.luis.app
+- `contact.luis.app` is attached directly to the `business-card` Vercel project below.
+- `vercel.json` rewrites `/` to `/contact`. Next.js retains `basePath: "/contact"`, so assets, the API, vCard, and Wallet downloads keep their existing `/contact/*` paths on the new hostname.
+- Page metadata, the Wallet QR payload, and the pass website use `https://contact.luis.app`. Social preview images resolve against that hostname. The vCard's general website remains `https://luis.app`.
+- The original apex/www project rules below are retained for compatibility. They must not redirect visitors to the new hostname until its DNS and HTTPS are working.
+- Neither the Substack homepage routing nor DNS/email records are changed by this migration.
+
+### DNS setup
+
+Vercel returned this project-specific recommendation when `contact.luis.app` was added:
+
+| Type | Host | Value | TTL |
+| --- | --- | --- | --- |
+| CNAME | `contact` | `a1c85a7a94c63606.vercel-dns-017.com` | Automatic/default |
+
+Add this at the authoritative DNS provider (currently `dns1.registrar-servers.com` and `dns2.registrar-servers.com`). Do not change the apex, `www`, nameservers, MX records, or email TXT records. Vercel ownership is verified; DNS must point to Vercel before the new hostname and its certificate can be verified end to end. No ownership TXT challenge was requested.
+
+### Migration verification and rollback
+
+The automated tests cover the root rewrite configuration, retained asset namespace, canonical Wallet destination, and feed identity. Verify the deployed root response, prefixed assets/API/downloads, and signed pass contents separately; local `next start` does not apply `vercel.json` rewrites. After DNS is added, also verify HTTPS on `contact.luis.app` and a physical iPhone Wallet import.
+
+Rolling the application back restores its prior canonical URL and pass. The old `/contact` route remains available throughout; no DNS change is necessary to keep that legacy URL working.
+
+## Existing apex/www routing
+
+Originally configured September 21, 2026 (Pacific time); verified unchanged November 2, 2026 (Pacific time).
+
+- Legacy public page: https://luis.app/contact
 - Source: https://github.com/luisaugusto/business-card
 - Application project: https://vercel.com/luisaugustos-projects/business-card
 - Application project ID: `prj_98rRo3Y6U54bj3xHBMvyEscbSS3Z`
@@ -44,7 +71,7 @@ To restore the exact pre-contact domain behavior:
 
 Do those steps in that order to avoid a redirect loop between `www.luis.app/contact` and `luis.app/contact`. The original domain and routing state is recorded in `routing-before.json`. No DNS records were changed.
 
-## Verification performed
+## Original September verification
 
 - Production build and TypeScript check passed; eight automated tests passed.
 - Desktop dark and mobile light layouts visually checked against the supplied design.

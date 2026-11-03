@@ -11,7 +11,7 @@ export const profile = {
   region: "CA",
   country: "USA",
   website: "https://luis.app",
-  canonical: "https://luis.app/contact",
+  canonical: "https://contact.luis.app",
   github: "https://github.com/luisaugusto",
   linkedin: "https://www.linkedin.com/in/luisbaugusto/",
   publication: "https://luisaugusto.substack.com",

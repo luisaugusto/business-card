@@ -1,6 +1,6 @@
 # Luis Augusto — contact card
 
-Luis’s digital business card, designed for [luis.app/contact](https://luis.app/contact). Built with Next.js and TypeScript, with a mobile-first rose paper sleeve and a static cotton-paper card.
+Luis’s digital business card, designed for [contact.luis.app](https://contact.luis.app). Built with Next.js and TypeScript, with a mobile-first rose paper sleeve and a static cotton-paper card.
 
 ## Development
 
@@ -11,7 +11,7 @@ npm ci
 npm run dev
 ```
 
-Open http://localhost:3100/contact. The application uses `/contact` as its Next.js base path, including all assets and API routes.
+Open http://localhost:3100/contact. The application retains `/contact` as its Next.js base path, including all assets and API routes. On Vercel, `vercel.json` rewrites `/` to `/contact` so the public page is served at https://contact.luis.app without changing the browser URL.
 
 ```sh
 npm run test       # feed, vCard, Wallet content/assets and signing failure checks
@@ -40,9 +40,9 @@ A failed refresh throws inside Next.js’s data cache so an existing successful 
 
 ## Deployment
 
-Vercel runs tests before its production build. The connected GitHub repository deploys `main` to production and other branches to previews. Production-only sensitive environment variables hold the existing Wallet signing key and certificate (see [`wallet/README.md`](wallet/README.md)). Missing or invalid credentials fail the production build and leave the previous release active. Previews without credentials build normally with Wallet downloads disabled.
+Vercel runs tests and the TypeScript check before its production build. The connected GitHub repository deploys `main` to production and other branches to previews. Production-only sensitive environment variables hold the existing Wallet signing key and certificate (see [`wallet/README.md`](wallet/README.md)). Missing or invalid credentials fail the production build and leave the previous release active. Previews without credentials build normally with Wallet downloads disabled.
 
-The domain remains on the existing `luisaugusto-next` Vercel project. Its project routing rules forward `/contact` and `/contact/*` to this project’s stable production domain. The homepage continues to lead to Substack. See `docs/routing.md` for the deployed routing configuration and rollback instructions.
+`contact.luis.app` is attached directly to the `business-card` Vercel project. The existing `luis.app` and `www.luis.app` domains remain on `luisaugusto-next`; their routing rules still forward `/contact` and `/contact/*` to this project for compatibility. The homepage continues to lead to Substack. DNS and email records are managed separately and are not changed by deployment. See `docs/routing.md` for routing, DNS setup, and rollback instructions.
 
 ## Source assets
 

@@ -12,7 +12,7 @@ const mono = localFont({ src: [
 
 const description = `Connect with ${profile.name} — ${profile.title} in ${profile.city}, ${profile.region}. Save my contact or find me on GitHub and LinkedIn.`;
 export const metadata: Metadata = {
-  metadataBase: new URL(profile.website),
+  metadataBase: new URL(profile.canonical),
   title: `${profile.name} — ${profile.title}`,
   description,
   alternates: { canonical: profile.canonical },
