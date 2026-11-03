@@ -6,7 +6,7 @@
 - `contact.luis.app` is attached directly to the `business-card` Vercel project below.
 - `vercel.json` rewrites `/` to `/contact`. Next.js retains `basePath: "/contact"`, so assets, the API, vCard, and Wallet downloads keep their existing `/contact/*` paths on the new hostname.
 - Page metadata, the Wallet QR payload, and the pass website use `https://contact.luis.app`. Social preview images resolve against that hostname. The vCard's general website remains `https://luis.app`.
-- The original apex/www project rules below are retained for compatibility. They must not redirect visitors to the new hostname until its DNS and HTTPS are working.
+- The original apex/www project rules below remain in Vercel, but apex/www DNS has been moved to Substack separately. Those rules do not apply while the hostnames resolve elsewhere; the old `luis.app/contact` URL is not expected to work.
 - Neither the Substack homepage routing nor DNS/email records are changed by this migration.
 
 ### DNS setup
@@ -23,7 +23,7 @@ Add this at the authoritative DNS provider (currently `dns1.registrar-servers.co
 
 The automated tests cover the root rewrite configuration, retained asset namespace, canonical Wallet destination, and feed identity. Verify the deployed root response, prefixed assets/API/downloads, and signed pass contents separately; local `next start` does not apply `vercel.json` rewrites. After DNS is added, also verify HTTPS on `contact.luis.app` and a physical iPhone Wallet import.
 
-Rolling the application back restores its prior canonical URL and pass. The old `/contact` route remains available throughout; no DNS change is necessary to keep that legacy URL working.
+An application rollback does not change DNS. Versions before this migration lack the root rewrite and point Wallet links to the old apex URL, so do not roll back past the migration without accounting for those differences. The historical apex/www rollback below applies only when those hostnames resolve to Vercel.
 
 ## Existing apex/www routing
 
@@ -39,7 +39,7 @@ Originally configured September 21, 2026 (Pacific time); verified unchanged Nove
 - Team: `luisaugustos-projects`
 - Published routing version: `24236548-03f3-41e6-8341-cdb7952571c4`
 
-Both `luis.app` and `www.luis.app` connect to production on the domain-owning project. There is no domain-wide redirect on `luis.app`; path-specific routing now preserves its previous behavior outside `/contact`.
+Both `luis.app` and `www.luis.app` remain assigned to production on the domain-owning project. Their current external DNS points away from Vercel, so this assignment alone does not serve those hostnames. There is no domain-wide redirect on `luis.app`; path-specific routing now preserves its previous behavior outside `/contact`.
 
 The following project rules run in this order:
 

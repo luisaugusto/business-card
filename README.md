@@ -42,7 +42,7 @@ A failed refresh throws inside Next.js’s data cache so an existing successful 
 
 Vercel runs tests and the TypeScript check before its production build. The connected GitHub repository deploys `main` to production and other branches to previews. Production-only sensitive environment variables hold the existing Wallet signing key and certificate (see [`wallet/README.md`](wallet/README.md)). Missing or invalid credentials fail the production build and leave the previous release active. Previews without credentials build normally with Wallet downloads disabled.
 
-`contact.luis.app` is attached directly to the `business-card` Vercel project. The existing `luis.app` and `www.luis.app` domains remain on `luisaugusto-next`; their routing rules still forward `/contact` and `/contact/*` to this project for compatibility. The homepage continues to lead to Substack. DNS and email records are managed separately and are not changed by deployment. See `docs/routing.md` for routing, DNS setup, and rollback instructions.
+`contact.luis.app` is attached directly to the `business-card` Vercel project. The existing `luis.app` and `www.luis.app` domain assignments remain on the `luisaugusto-next` Vercel project, but their DNS has been moved to Substack separately. The old `/contact` proxy rules remain recorded there and only apply if those hostnames resolve to Vercel. The old `luis.app/contact` URL is not expected to work with the Substack DNS configuration. DNS and email records are managed separately and are not changed by deployment. See `docs/routing.md` for routing, DNS setup, and rollback instructions.
 
 ## Source assets
 
